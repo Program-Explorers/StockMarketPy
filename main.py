@@ -1,27 +1,26 @@
 import yfinance as yf
 from flask import Flask, render_template, request, jsonify
+import pandas as pd
 # from flask_compress import Compress
 
-msft = yf.Ticker("MSFT")
-
-
-class stocks:
-    def __int__(self, symbol, name, price):
-        self.name = name
-        self.symbol = symbol
-        self.price = price
-
-    def get_price(self):
-        return self.symbol.info
-
-    def get_dividends(self):
-        return self.symbol.dividends
-
-    def get_history(self, period):
-        return self.symbol.history(period=period)
-
-    def get_financials(self):
-        return self.symbol.financials
+# class stocks:
+#     def __init__(self, symbol, name):
+#         self.name = name
+#         self.symbol = symbol
+#
+#         self.ticker = yf.Ticker(symbol)
+#
+#     def get_price(self):
+#         return self.ticker.info
+#
+#     def get_dividends(self):
+#         return self.ticker.dividends
+#
+#     def get_history(self, period):
+#         return self.ticker.history(period=period)
+#
+#     def get_financials(self):
+#         return self.ticker.financials
 
 
 app = Flask(__name__)
@@ -91,5 +90,7 @@ def stockMain():
 # # get option chain for specific expiration
 # # opt = msft.option_chain('2020-12-24')
 # # print(opt)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
