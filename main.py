@@ -1,26 +1,33 @@
 import yfinance as yf
 from flask import Flask, render_template, request, jsonify
-import pandas as pd
+import urllib.request
+import json
+import datanews
+
 # from flask_compress import Compress
 
-# class stocks:
-#     def __init__(self, symbol, name):
-#         self.name = name
-#         self.symbol = symbol
-#
-#         self.ticker = yf.Ticker(symbol)
-#
-#     def get_price(self):
-#         return self.ticker.info
-#
-#     def get_dividends(self):
-#         return self.ticker.dividends
-#
-#     def get_history(self, period):
-#         return self.ticker.history(period=period)
-#
-#     def get_financials(self):
-#         return self.ticker.financials
+msft = yf.Ticker("MSFT")
+
+print(msft.info)
+
+
+class stocks:
+    def __int__(self, symbol, name, price):
+        self.name = name
+        self.symbol = symbol
+        self.price = price
+
+    def get_price(self):
+        return self.symbol.info
+
+    def get_dividends(self):
+        return self.symbol.dividends
+
+    def get_history(self, period):
+        return self.symbol.history(period=period)
+
+    def get_financials(self):
+        return self.symbol.financials
 
 
 app = Flask(__name__)
@@ -29,11 +36,48 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 # COMPRESS_LEVEL = 6
 # COMPRESS_MIN_SIZE = 500
 # Compress(app)
+symbol = ''
+stocksArray = urllib.request.urlopen(
+    'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + symbol +'&apikey=demo').read()
+stock = json.loads(stocksArray)
 
 
 @app.route('/', methods=['POST', 'GET'])
 def stockMain():
     return render_template("stocks.html")
+
+
+@app.route('/news')
+def news():
+    datanews.api_key = '04loc6feus33veq8swg615d7w'
+    response = datanews.headlines(q="stocks, stock market, bitcoin, etf, NYSE, NASDAQ, Dow Jones, "
+                                  ,
+                                  language=['en'], sortBy="relevance")
+    articles = response['hits']
+    article_data = {
+        'article1_title': articles[0]['title'],
+        'article1_content': articles[0]['content'],
+        'article1_img': articles[0]['imageUrl'],
+        'article1_url': articles[0]['url'],
+        'article2_title': articles[1]['title'],
+        'article2_content': articles[1]['content'],
+        'article2_img': articles[1]['imageUrl'],
+        'article2_url': articles[1]['url'],
+        'article3_title': articles[2]['title'],
+        'article3_content': articles[2]['content'],
+        'article3_img': articles[2]['imageUrl'],
+        'article3_url': articles[2]['url'],
+        'article4_title': articles[3]['title'],
+        'article4_content': articles[3]['content'],
+        'article4_img': articles[3]['imageUrl'],
+        'article4_url': articles[3]['url'],
+        'article5_title': articles[4]['title'],
+        'article5_content': articles[4]['content'],
+        'article5_img': articles[4]['imageUrl'],
+        'article5_url': articles[4]['url'],
+    }
+    print(article_data)
+    return render_template("news.html", article_data=article_data)
 # get stock info
 # print(msft.info)
 #
