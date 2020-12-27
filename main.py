@@ -31,6 +31,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 # COMPRESS_MIN_SIZE = 500
 # Compress(app)
 
+
 @app.route('/', methods=['POST', 'GET'])
 def stockMain():
     return render_template("stocks.html")
