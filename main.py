@@ -1,27 +1,28 @@
 import yfinance as yf
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template
+# from yahoo_fin import stock_info as si
 # from flask_compress import Compress
 
-msft = yf.Ticker("MSFT")
 
-
-class stocks:
-    def __int__(self, symbol, name, price):
-        self.name = name
+class Stocks:
+    def __init__(self, symbol, name, price):
         self.symbol = symbol
+        self.name = name
         self.price = price
 
+        self.ticker = yf.Ticker(self.symbol)
+
     def get_price(self):
-        return self.symbol.info
+        return self.ticker.info
 
     def get_dividends(self):
-        return self.symbol.dividends
+        return self.ticker.dividends
 
     def get_history(self, period):
-        return self.symbol.history(period=period)
+        return self.ticker.history(period=period)
 
     def get_financials(self):
-        return self.symbol.financials
+        return self.ticker.financials
 
 
 app = Flask(__name__)
@@ -31,10 +32,17 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 # COMPRESS_MIN_SIZE = 500
 # Compress(app)
 
+# print(yf.Ticker("AAPL").info())
+# default_price = si.get_quote_table("aapl", dict_result = False)
+# print(default_price)
+
 
 @app.route('/', methods=['POST', 'GET'])
 def stockMain():
-    return render_template("stocks.html")
+    stock1 = Stocks("AAPL", "Apple", 100)
+    return render_template("stocks.html", stock1.name, stock1.symbol, stock1.get_price(), stock1.get_dividends())
+
+
 # get stock info
 # print(msft.info)
 #
@@ -91,5 +99,7 @@ def stockMain():
 # # get option chain for specific expiration
 # # opt = msft.option_chain('2020-12-24')
 # # print(opt)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
