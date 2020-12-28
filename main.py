@@ -76,7 +76,6 @@ def news():
         'article5_img': articles[4]['imageUrl'],
         'article5_url': articles[4]['url'],
     }
-    print(response['numResults'])
     return render_template("news.html", article_data=article_data)
 # get stock info
 # print(msft.info)
