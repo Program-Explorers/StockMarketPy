@@ -6,7 +6,7 @@ import datanews
 
 # from flask_compress import Compress
 
-msft = yf.Ticker("MSFT")
+# msft = yf.Ticker("MSFT")
 
 # print(msft.info)
 
@@ -54,28 +54,15 @@ def news():
                                   ,
                                   language=['en'], sortBy="relevance")
     articles = response['hits']
-    article_data = {
-        'article1_title': articles[0]['title'],
-        'article1_content': articles[0]['content'],
-        'article1_img': articles[0]['imageUrl'],
-        'article1_url': articles[0]['url'],
-        'article2_title': articles[1]['title'],
-        'article2_content': articles[1]['content'],
-        'article2_img': articles[1]['imageUrl'],
-        'article2_url': articles[1]['url'],
-        'article3_title': articles[2]['title'],
-        'article3_content': articles[2]['content'],
-        'article3_img': articles[2]['imageUrl'],
-        'article3_url': articles[2]['url'],
-        'article4_title': articles[3]['title'],
-        'article4_content': articles[3]['content'],
-        'article4_img': articles[3]['imageUrl'],
-        'article4_url': articles[3]['url'],
-        'article5_title': articles[4]['title'],
-        'article5_content': articles[4]['content'],
-        'article5_img': articles[4]['imageUrl'],
-        'article5_url': articles[4]['url'],
-    }
+
+    article_data = {}
+    for i in range(1, 11):
+        x = str(i)
+        article_data['article'+x+'_title'] = articles[i-1]['title']
+        article_data['article' + x + '_content'] = articles[i - 1]['content']
+        article_data['article' + x + '_img'] = articles[i - 1]['imageUrl']
+        article_data['article' + x + '_url'] = articles[i - 1]['content']
+
     return render_template("news.html", article_data=article_data)
 # get stock info
 # print(msft.info)
