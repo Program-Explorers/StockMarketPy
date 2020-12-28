@@ -8,7 +8,7 @@ import datanews
 
 msft = yf.Ticker("MSFT")
 
-print(msft.info)
+# print(msft.info)
 
 
 class stocks:
@@ -76,7 +76,7 @@ def news():
         'article5_img': articles[4]['imageUrl'],
         'article5_url': articles[4]['url'],
     }
-    print(article_data)
+    print(response['numResults'])
     return render_template("news.html", article_data=article_data)
 # get stock info
 # print(msft.info)

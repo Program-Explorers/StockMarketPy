@@ -5,9 +5,12 @@
 
 }
 .bg-color {
-    background: linear-gradient(to right, #191a1a 54%, #8ab3ff 78%);
+    background-color: #537895;
+    background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
 }
-
+.logo-tx {
+    color: white;
+}
 .logo-img {
     border-radius: 8px;
 }
