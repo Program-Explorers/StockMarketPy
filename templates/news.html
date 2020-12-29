@@ -34,41 +34,28 @@
     </div>
 
     <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" style="background-image: url({{url_for('static', filename='img/bg_image.jpg')}});" data-image-src="{{url_for('static', filename='img/bg_image.jpg')}}">
-        <form class="d-flex find-location">
-            <input class="form-control tm-search-input" type="search" placeholder="Search News" aria-label="Search">
-            <button type="submit">
-                <i class="fa fa-search"></i>
-            </button>
-        </form>
     </div>
 
     <div class="container-fluid tm-container-content tm-mt-60">
-        <div class="row mb-4">
-            <h2 class="col-6 tm-text-primary">
-                Latest Articles
-            </h2>
-<!--            <div class="col-6 d-flex justify-content-end align-items-center">-->
-<!--                <form action="" class="tm-text-primary">-->
-<!--                    Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 16-->
-<!--                </form>-->
-<!--            </div>-->
-        </div>
         <div class="row tm-mb-90 tm-gallery">
         	  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
                 <figure class="effect-ming tm-video-item">
                     <img src="{{article_data['article1_img']}}" alt="Image" class="img-fluid">
                     <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>{{article_data['article1_title']}}</h2>
-                        <a href="photo-detail.html">View more</a>
+                        <h2 class="truncate" style="font-size: 1rem;">{{article_data['article1_title']}}</h2>
+                        <a href="{{article_data['article1_url']}}">View more</a>
                     </figcaption>
                 </figure>
+                <div class="d-flex justify-content-between tm-text-gray">
+                    <span class="tm-text-gray-light">16 Sep 2020</span>
+                </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
                 <figure class="effect-ming tm-video-item">
                     <img src="{{article_data['article2_img']}}" alt="Image" class="img-fluid">
                     <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>{{article_data['article2_title']}}</h2>
-                        <a href="photo-detail.html">View more</a>
+                        <h2 class="truncate" style="font-size: 1rem;">{{article_data['article2_title']}}</h2>
+                        <a href="{{article_data['article2_url']}}">View more</a>
                     </figcaption>
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray">
@@ -79,8 +66,8 @@
                 <figure class="effect-ming tm-video-item">
                     <img src="{{article_data['article3_img']}}" alt="Image" class="img-fluid">
                     <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>{{article_data['article3_title']}}</h2>
-                        <a href="photo-detail.html">View more</a>
+                        <h2 class="truncate" style="font-size: 1rem;">{{article_data['article3_title']}}</h2>
+                        <a href="{{article_data['article3_url']}}">View more</a>
                     </figcaption>
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray">
@@ -91,8 +78,8 @@
                 <figure class="effect-ming tm-video-item">
                     <img src="{{article_data['article4_img']}}" alt="Image" class="img-fluid">
                     <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>{{article_data['article4_title']}}</h2>
-                        <a href="photo-detail.html">View more</a>
+                        <h2 class="truncate" style="font-size: 1rem;">{{article_data['article4_title']}}</h2>
+                        <a href="{{article_data['article4_url']}}l">View more</a>
                     </figcaption>
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray">
@@ -104,8 +91,8 @@
                 <figure class="effect-ming tm-video-item">
                     <img src="{{article_data['article5_img']}}" alt="Image" class="img-fluid">
                     <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>{{article_data['article5_title']}}</h2>
-                        <a href="photo-detail.html">View more</a>
+                        <h2 class="truncate" style="font-size: 1rem;">{{article_data['article5_title']}}</h2>
+                        <a href="{{article_data['article5_url']}}">View more</a>
                     </figcaption>
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray">
@@ -116,8 +103,8 @@
                 <figure class="effect-ming tm-video-item">
                     <img src="{{article_data['article6_img']}}" alt="Image" class="img-fluid">
                     <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>{{article_data['article6_title']}}</h2>
-                        <a href="photo-detail.html">View more</a>
+                        <h2 class="truncate" style="font-size: 1rem;">{{article_data['article6_title']}}</h2>
+                        <a href="{{article_data['article6_url']}}">View more</a>
                     </figcaption>
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray">
@@ -128,8 +115,8 @@
                 <figure class="effect-ming tm-video-item">
                     <img src="{{article_data['article7_img']}}" alt="Image" class="img-fluid">
                     <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>{{article_data['article7_title']}}</h2>
-                        <a href="photo-detail.html">View more</a>
+                        <h2 class="truncate" style="font-size: 1rem;">{{article_data['article7_title']}}</h2>
+                        <a href="{{article_data['article7_url']}}">View more</a>
                     </figcaption>
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray">
@@ -140,8 +127,8 @@
                 <figure class="effect-ming tm-video-item">
                     <img src="{{article_data['article8_img']}}" alt="Image" class="img-fluid">
                     <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>{{article_data['article8_title']}}</h2>
-                        <a href="photo-detail.html">View more</a>
+                        <h2 class="truncate" style="font-size: 1rem;">{{article_data['article8_title']}}</h2>
+                        <a href="{{article_data['article8_url']}}">View more</a>
                     </figcaption>
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray">
@@ -152,8 +139,8 @@
                 <figure class="effect-ming tm-video-item">
                     <img src="{{article_data['article9_img']}}" alt="Image" class="img-fluid">
                     <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>{{article_data['article9_title']}}</h2>
-                        <a href="photo-detail.html">View more</a>
+                        <h2 class="truncate" style="font-size: 1rem;">{{article_data['article9_title']}}</h2>
+                        <a href="{{article_data['article9_url']}}">View more</a>
                     </figcaption>
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray">
@@ -164,8 +151,8 @@
                 <figure class="effect-ming tm-video-item">
                     <img src="{{article_data['article10_img']}}" alt="Image" class="img-fluid">
                     <figcaption class="d-flex align-items-center justify-content-center">
-                        <h2>{{article_data['article10_title']}}</h2>
-                        <a href="photo-detail.html">View more</a>
+                        <h2 class="truncate" style="font-size: 1rem;">{{article_data['article10_title']}}</h2>
+                        <a href="{{article_data['article10_url']}}">View more</a>
                     </figcaption>
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray">
@@ -179,7 +166,7 @@
         <div class="container-fluid tm-container-small">
             <div class="row">
                 <div class="col-lg-8 col-md-7 col-12 px-5 mb-3">
-                    Copyright 2020 Catalog-Z Company. All rights reserved.
+                    Copyright 2020 Program Explorers. All rights reserved.
                 </div>
                 <div class="col-lg-4 col-md-5 col-12 px-5 text-right">
                     Designed by <a href="https://templatemo.com" class="tm-text-gray" rel="sponsored" target="_parent">TemplateMo</a>

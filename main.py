@@ -54,14 +54,14 @@ def news():
                                   ,
                                   language=['en'], sortBy="relevance")
     articles = response['hits']
-
+    print(response)
     article_data = {}
     for i in range(1, 11):
         x = str(i)
         article_data['article'+x+'_title'] = articles[i-1]['title']
         article_data['article' + x + '_content'] = articles[i - 1]['content']
         article_data['article' + x + '_img'] = articles[i - 1]['imageUrl']
-        article_data['article' + x + '_url'] = articles[i - 1]['content']
+        article_data['article' + x + '_url'] = articles[i - 1]['url']
 
     return render_template("news.html", article_data=article_data)
 # get stock info
