@@ -3,31 +3,60 @@ from flask import Flask, render_template, request, jsonify
 import urllib.request
 import json
 import datanews
+from pandas_datareader import data
+from fuzzywuzzy import process
 
+import matplotlib.pyplot as plt
+import pandas as pd
 # from flask_compress import Compress
 
-# msft = yf.Ticker("MSFT")
 
-# print(msft.info)
+def get_company(company):
+    with open('data_stocks') as json_file:
+        list_of_stocks = json.load(json_file)
+        return process.extractOne(company, list_of_stocks)[0]
+
+
+tickers = ['AAPL', 'MSFT', '^GSPC']
+start_date = '2020-01-01'
+end_date = '2020-12-31'
+panel_data = data.DataReader('INPX', 'yahoo', start_date, end_date)
+
+# yf.Ticker("MSFT").info['shortName']
+# panel_data.to_frame()
 
 
 class stocks:
-    def __int__(self, symbol, name, price):
+    def __init__(self, symbol, name, price):
         self.name = name
         self.symbol = symbol
         self.price = price
 
+        self.Ticker = yf.Ticker(symbol)
+
     def get_price(self):
-        return self.symbol.info
+        return self.price
 
     def get_dividends(self):
-        return self.symbol.dividends
+        return self.Ticker.dividends
 
     def get_history(self, period):
-        return self.symbol.history(period=period)
+        return self.Ticker.history(period=period)
 
     def get_financials(self):
-        return self.symbol.financials
+        return self.Ticker.financials
+
+    def get_quaterly_financials(self):
+        return self.Ticker.quarterly_financials
+
+    def get_actions(self):
+        return self.Ticker.actions
+
+    def get_splits(self):
+        return self.Ticker.splits
+
+    def get_major_holders(self):
+        return self.Ticker.major_holders
 
 
 app = Flask(__name__)
@@ -36,15 +65,26 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 # COMPRESS_LEVEL = 6
 # COMPRESS_MIN_SIZE = 500
 # Compress(app)
-symbol = ''
-stocksArray = urllib.request.urlopen(
-    'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + symbol +'&apikey=demo').read()
-stock = json.loads(stocksArray)
 
 
 @app.route('/', methods=['POST', 'GET'])
 def stockMain():
-    return render_template("stocks.html")
+    # get text from search bar
+    if request.method == 'POST':
+        searched = request.form['stock']
+        company1 = get_company(searched).title()
+        symbol1 = get_company(company1).upper()
+
+    else:
+        company1 = "Microsoft"
+        symbol1 = 'MSFT'
+
+    stock1_api_info = json.loads(urllib.request.urlopen("".join(['https://www.alphavantage.co/query?function=GLOBAL_'
+                                                                 'QUOTE&symbol=', symbol1, '&apikey=demo'])).read())
+
+    stock1 = stocks(symbol1, company1, round(int(stock1_api_info['Global Quote']['05. price']), 2))
+
+    return render_template("stocks.html", stock1=stock1)
 
 
 @app.route('/news')
@@ -120,6 +160,8 @@ def news():
 # # get option chain for specific expiration
 # # opt = msft.option_chain('2020-12-24')
 # # print(opt)
+
+# LINK: https://aroussi.com/post/python-yahoo-finance
 
 
 if __name__ == '__main__':
