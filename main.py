@@ -43,7 +43,7 @@ class stocks:
     def get_financials(self):
         return self.Ticker.financials
 
-    def get_quaterly_financials(self):
+    def get_quarterly_financials(self):
         return self.Ticker.quarterly_financials
 
     def get_actions(self):
@@ -68,17 +68,21 @@ Compress(app)
 def stockMain():
     # get text from search bar
     if request.method == 'POST':
-        company1 = request.form['stock'].title().upper()
-        symbol1 = get_company(company1).upper()
+        searched = request.form['stock'].upper()
+        comp_info = get_company(searched)
+        symbol1 = comp_info['symbol']
+        company1 = comp_info['name']
         print(company1)
+        print(symbol1)
     else:
         company1 = "Microsoft"
         symbol1 = 'MSFT'
 
-    stock1_api_info = json.loads(urllib.request.urlopen("".join(['https://www.alphavantage.co/query?function=GLOBAL_'
-                                                                 'QUOTE&symbol=', symbol1, '&apikey=demo'])).read())
+    api_link_1 = ['https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=', symbol1, '&apikey=demo']
+    stock1_data_api = urllib.request.urlopen("".join(api_link_1)).read()
+    stock1_api_info = json.loads(stock1_data_api)
 
-    stock1 = stocks(symbol1, company1, str(round(float(stock1_api_info['Global Quote']['05. price']), 2)))
+    stock1 = stocks(symbol1, company1, round(float(stock1_api_info['Global Quote']['05. price']), 2))
 
     return render_template("stocks.html", stock=stock1)
 
