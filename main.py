@@ -1,14 +1,11 @@
 import yfinance as yf
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 import urllib.request
 import json
 import datanews
 from pandas_datareader import data
 from fuzzywuzzy import process
-
-import matplotlib.pyplot as plt
-import pandas as pd
-# from flask_compress import Compress
+from flask_compress import Compress
 
 
 def get_company(company):
@@ -61,20 +58,19 @@ class stocks:
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-# COMPRESS_MIMETYPES = ['text/html', 'text/css', 'text/xml', 'application/json', 'application/javascript']
-# COMPRESS_LEVEL = 6
-# COMPRESS_MIN_SIZE = 500
-# Compress(app)
+COMPRESS_MIMETYPES = ['text/html', 'text/css', 'text/xml', 'application/json', 'application/javascript']
+COMPRESS_LEVEL = 6
+COMPRESS_MIN_SIZE = 500
+Compress(app)
 
 
 @app.route('/', methods=['POST', 'GET'])
 def stockMain():
     # get text from search bar
     if request.method == 'POST':
-        searched = request.form['stock']
-        company1 = get_company(searched).title()
+        company1 = request.form['stock'].title().upper()
         symbol1 = get_company(company1).upper()
-
+        print(company1)
     else:
         company1 = "Microsoft"
         symbol1 = 'MSFT'
@@ -82,16 +78,16 @@ def stockMain():
     stock1_api_info = json.loads(urllib.request.urlopen("".join(['https://www.alphavantage.co/query?function=GLOBAL_'
                                                                  'QUOTE&symbol=', symbol1, '&apikey=demo'])).read())
 
-    stock1 = stocks(symbol1, company1, round(int(stock1_api_info['Global Quote']['05. price']), 2))
+    stock1 = stocks(symbol1, company1, str(round(float(stock1_api_info['Global Quote']['05. price']), 2)))
 
-    return render_template("stocks.html", stock1=stock1)
+    return render_template("stocks.html", stock=stock1)
 
 
 @app.route('/news')
 def news():
     datanews.api_key = '04loc6feus33veq8swg615d7w'
-    response = datanews.headlines(q="stocks, stock market, bitcoin, etf, NYSE, NASDAQ, Dow Jones, "
-                                  ,
+    response = datanews.headlines(q="stocks, bitcoin, ETF, NYSE, NASDAQ, S&P 500, Dow Jones, Index Funds"
+                                  , topic="business",
                                   language=['en'], sortBy="relevance")
     articles = response['hits']
     print(response)
@@ -100,8 +96,17 @@ def news():
         x = str(i)
         article_data['article'+x+'_title'] = articles[i-1]['title']
         article_data['article' + x + '_content'] = articles[i - 1]['content']
-        article_data['article' + x + '_img'] = articles[i - 1]['imageUrl']
+        if articles[i - 1]['imageUrl'] != '':
+            article_data['article' + x + '_img'] = articles[i - 1]['imageUrl']
+        else:
+            article_data['article' + x + '_img'] = 'https://lh3.googleusercontent.com/proxy/lZwv33_-w40kpm' \
+                                                   '-8WkJrfJ0Y8xPtiXVn7_MkYP8CpzqFFrgj6vbViqpurv' \
+                                                   '-ScKymqaUaO5BtvdQcHok_6u-V0BWog90etdLp1pcPB4X2QZPS8Q '
         article_data['article' + x + '_url'] = articles[i - 1]['url']
+        if articles[i - 1]['authors']:
+            article_data['article' + x + '_author'] = articles[i - 1]['authors'][0]
+        else:
+            article_data['article' + x + '_author'] = ''
 
     return render_template("news.html", article_data=article_data)
 # get stock info

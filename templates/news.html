@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/templatemo-style.css')}}" type="text/css">
     <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='img/logo.ico') }}" rel="shortcut icon" type="image/x-icon"/>
 
 </head>
 <body class="bg-color">
@@ -46,8 +47,8 @@
                         <a href="{{article_data['article1_url']}}">View more</a>
                     </figcaption>
                 </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">16 Sep 2020</span>
+                <div class="d-flex justify-content-between">
+                    <span class="author">{{article_data['article1_author']}}</span>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
@@ -58,8 +59,8 @@
                         <a href="{{article_data['article2_url']}}">View more</a>
                     </figcaption>
                 </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">14 Oct 2020</span>
+                <div class="d-flex justify-content-between">
+                    <span class="author">{{article_data['article2_author']}}</span>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
@@ -70,8 +71,8 @@
                         <a href="{{article_data['article3_url']}}">View more</a>
                     </figcaption>
                 </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">12 Oct 2020</span>
+                <div class="d-flex justify-content-between">
+                    <span class="author">{{article_data['article3_author']}}</span>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
@@ -82,8 +83,8 @@
                         <a href="{{article_data['article4_url']}}l">View more</a>
                     </figcaption>
                 </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">10 Oct 2020</span>
+                <div class="d-flex justify-content-between">
+                    <span class="author">{{article_data['article4_author']}}</span>
                 </div>
             </div>
 
@@ -95,8 +96,8 @@
                         <a href="{{article_data['article5_url']}}">View more</a>
                     </figcaption>
                 </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">24 Sep 2020</span>
+                <div class="d-flex justify-content-between">
+                    <span class="author">{{article_data['article5_author']}}</span>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
@@ -107,8 +108,8 @@
                         <a href="{{article_data['article6_url']}}">View more</a>
                     </figcaption>
                 </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">20 Sep 2020</span>
+                <div class="d-flex justify-content-between">
+                    <span class="author">{{article_data['article6_author']}}</span>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
@@ -119,8 +120,8 @@
                         <a href="{{article_data['article7_url']}}">View more</a>
                     </figcaption>
                 </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">16 Sep 2020</span>
+                <div class="d-flex justify-content-between">
+                    <span class="author">{{article_data['article7_author']}}</span>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
@@ -131,8 +132,8 @@
                         <a href="{{article_data['article8_url']}}">View more</a>
                     </figcaption>
                 </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">12 Sep 2020</span>
+                <div class="d-flex justify-content-between ">
+                    <span class="author">{{article_data['article8_author']}}</span>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
@@ -143,8 +144,8 @@
                         <a href="{{article_data['article9_url']}}">View more</a>
                     </figcaption>
                 </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">10 Sep 2020</span>
+                <div class="d-flex justify-content-between ">
+                    <span class="author">{{article_data['article9_author']}}</span>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
@@ -155,8 +156,8 @@
                         <a href="{{article_data['article10_url']}}">View more</a>
                     </figcaption>
                 </figure>
-                <div class="d-flex justify-content-between tm-text-gray">
-                    <span class="tm-text-gray-light">8 Sep 2020</span>
+                <div class="d-flex justify-content-between">
+                    <span class="author">{{article_data['article10_author']}}</span>
                 </div>
             </div>
         </div>

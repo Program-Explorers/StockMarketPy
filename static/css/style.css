@@ -17,6 +17,10 @@
 .flexer {
     display: flex;
 }
+.author {
+    margin-left: 2.5rem;
+    color: white;
+}
 .logo-text {
     margin-right: 1rem;
 }
