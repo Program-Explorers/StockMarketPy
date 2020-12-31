@@ -14,6 +14,8 @@
         families: ["Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"]
     }});
 
+
+
   </script>
   <link href="{{ url_for('static', filename='img/logo.ico') }}" rel="shortcut icon" type="image/x-icon"/>
 </head>
@@ -59,17 +61,47 @@
   <div class="box">
     <a class="button" href="#popup1">Let me Pop up</a>
   </div>
+  <div class="section">
+    <div class="overlay" id="popup1">
+      <div class="popup">
+        <h2>Here i am</h2>
+        <a class="close" href="/">&times;</a>
+        <div class="content">
+          <div class="wrapper">
+            <div class="clash-card barbarian">
+              <div class="clash-card__image clash-card__image--barbarian">
+                <img alt="barbarian" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/barbarian.png"/>
+              </div>
+              <div class="clash-card__level clash-card__level--barbarian">Level 4</div>
+              <div class="clash-card__unit-name">The Barbarian</div>
+              <div class="clash-card__unit-description">
+                The Barbarian is a kilt-clad Scottish warrior with an angry, battle-ready expression, hungry for
+                destruction. He has Killer yellow horseshoe mustache.
+              </div>
 
-  <div class="overlay" id="popup1">
-    <div class="popup">
-      <h2>Here i am</h2>
-      <a class="close" href="/">&times;</a>
-      <div class="content">
-        Thank to pop me out of that button, but now i'm done so you can close this window.
+              <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
+                <div class="one-third">
+                  <div class="stat">20<sup>S</sup></div>
+                  <div class="stat-value">Training</div>
+                </div>
+
+                <div class="one-third">
+                  <div class="stat">16</div>
+                  <div class="stat-value">Speed</div>
+                </div>
+
+                <div class="one-third no-border">
+                  <div class="stat">150</div>
+                  <div class="stat-value">Cost</div>
+                </div>
+
+              </div>
+
+            </div> <!-- end clash-card barbarian-->
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="section">
     <div class="w-layout-grid works-grid" id="works-grid">
       <div id="w-node-8f65c72d8fa5-b6f621c6">
         <a class="work-image cc-work-1 w-inline-block" href="/work/project-1"></a>
