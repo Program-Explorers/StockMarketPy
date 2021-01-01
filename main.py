@@ -24,8 +24,8 @@ def create_plot(stock_data, ticker):
     plt.ylabel('Adj Close (p)')
     plt.legend()
     plt.title('Stock Price')
-    fig = plt.figure()
-    fig.savefig('pl.png')
+    # fig = plt.figure()
+    # fig.savefig('pl.png')
 
 
 def get_stats(stock_data):
